@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OS Duel — Accenture Practice</title>
+<style>
+:root{--bg:#f6f7fb;--surface:#fff;--surface2:#f0f2f8;--text:#161a27;--muted:#697086;--line:#dfe3ed;--accent:#6557ff;--accent2:#10b981;--danger:#ef476f;--shadow:0 18px 60px rgba(25,30,55,.10)}
+[data-theme="dark"]{--bg:#090d18;--surface:#111827;--surface2:#182236;--text:#f5f7ff;--muted:#9aa6bd;--line:#28344a;--accent:#8b7cff;--accent2:#2dd4a3;--danger:#ff6b88;--shadow:0 20px 70px rgba(0,0,0,.30)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 15% 0%,rgba(101,87,255,.12),transparent 30%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}button,input{font:inherit}button{cursor:pointer}.app{max-width:1050px;margin:auto;padding:22px 18px 70px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px}.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),#9d7cff);color:#fff;font-weight:900;box-shadow:0 10px 28px rgba(101,87,255,.25)}.brand-title{font-size:20px;font-weight:850}.brand-sub{font-size:12px;color:var(--muted)}.iconbtn{border:1px solid var(--line);background:var(--surface);color:var(--text);width:42px;height:42px;border-radius:13px;box-shadow:var(--shadow)}.card{background:color-mix(in srgb,var(--surface) 94%,transparent);border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow)}.hero{padding:34px}.eyebrow{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border-radius:999px;background:var(--surface2);color:var(--muted);font-size:12px;font-weight:750}.dot{width:7px;height:7px;border-radius:50%;background:var(--accent2)}h1{font-size:clamp(38px,7vw,72px);line-height:.98;letter-spacing:-3px;margin:20px 0 14px;max-width:780px}h1 span{background:linear-gradient(90deg,var(--accent),#b06cff);-webkit-background-clip:text;background-clip:text;color:transparent}h2{font-size:28px;letter-spacing:-.7px;margin:0 0 9px}h3{margin:0 0 8px}p{line-height:1.65;color:var(--muted)}.hero-copy{max-width:730px;font-size:16px}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}.chip{padding:8px 11px;border:1px solid var(--line);border-radius:999px;background:var(--surface2);color:var(--muted);font-size:12px;font-weight:700}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:22px}@media(max-width:700px){.formgrid{grid-template-columns:1fr}}label{display:block;color:var(--muted);font-size:12px;font-weight:750;margin:0 0 7px}input{width:100%;padding:13px 14px;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--text);outline:none}input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(101,87,255,.10)}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.btn{border:0;border-radius:14px;padding:13px 17px;font-weight:800;background:var(--accent);color:#fff;box-shadow:0 10px 25px rgba(101,87,255,.20)}.btn.secondary{background:var(--surface2);color:var(--text);border:1px solid var(--line);box-shadow:none}.btn.green{background:var(--accent2);color:#061713}.btn:disabled{opacity:.45;cursor:not-allowed}.roomline{display:flex;align-items:end;gap:10px}.roomline>div:first-child{flex:1}.room-code{font-size:26px;letter-spacing:5px;font-weight:900}.notice{margin-top:16px;padding:13px 15px;border:1px dashed var(--line);border-radius:15px;background:var(--surface2);color:var(--muted);font-size:13px;line-height:1.55}.hidden{display:none!important}.quiz{padding:25px}.quizhead{display:flex;justify-content:space-between;gap:14px;align-items:center;color:var(--muted);font-size:13px}.progress{height:8px;background:var(--surface2);border-radius:99px;overflow:hidden;margin:14px 0 28px}.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .25s}.qmeta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:13px}.qtext{font-size:clamp(22px,3vw,31px);line-height:1.32;letter-spacing:-.5px;margin:0 0 20px}.option{display:flex;align-items:flex-start;gap:13px;width:100%;text-align:left;border:1px solid var(--line);background:var(--surface);color:var(--text);padding:16px;border-radius:17px;margin:10px 0;transition:.16s}.option:hover{transform:translateY(-1px);border-color:var(--accent)}.option.selected{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface))}.letter{width:30px;height:30px;display:grid;place-items:center;border-radius:10px;background:var(--surface2);font-weight:900;flex:none}.selected .letter{background:var(--accent);color:#fff}.footer-actions{display:flex;justify-content:space-between;gap:10px;margin-top:24px}.results{padding:28px}.scoregrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:22px 0}@media(max-width:650px){.scoregrid{grid-template-columns:1fr}}.scorecard{padding:20px;border:1px solid var(--line);border-radius:20px;background:var(--surface2)}.score{font-size:48px;font-weight:950;letter-spacing:-2px;margin:3px 0}.pct{color:var(--muted);font-size:13px}.leader{margin-top:18px}.leader-row{display:grid;grid-template-columns:1fr auto;gap:10px;padding:13px 0;border-bottom:1px solid var(--line)}.leader-row:last-child{border-bottom:0}.rank{font-weight:850}.review{margin-top:25px}.review-item{padding:16px 0;border-top:1px solid var(--line)}.correct{color:var(--accent2);font-weight:750}.wrong{color:var(--danger);font-weight:750}.small{font-size:13px;color:var(--muted);line-height:1.5}.center{text-align:center}.loading{opacity:.65}.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);padding:11px 15px;border-radius:12px;background:var(--text);color:var(--bg);font-size:13px;font-weight:750;z-index:10;box-shadow:var(--shadow)}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar"><div class="brand"><div class="logo">OS</div><div><div class="brand-title">OS Duel</div><div class="brand-sub">Accenture preparation · shared scores</div></div></div><button class="iconbtn" id="themeBtn" title="Toggle theme">☾</button></header>
+
+<section id="home" class="card hero">
+  <div class="eyebrow"><span class="dot"></span> Operating Systems practice</div>
+  <h1>Challenge the questions.<br><span>Track the score.</span></h1>
+  <p class="hero-copy">A private-feeling two-player quiz for Accenture preparation. Solve the same question bank separately, submit your score, and compare results through a shared room code.</p>
+  <div class="chips"><span class="chip">58 questions currently loaded</span><span class="chip">Auto scoring</span><span class="chip">Shared leaderboard</span><span class="chip">Light / dark mode</span><span class="chip">Mobile friendly</span></div>
+
+  <div class="formgrid">
+    <div><label>Your name</label><input id="name" placeholder="Enter your name" maxlength="40"></div>
+    <div><label>Room code</label><input id="room" class="room-code" placeholder="ABC123" maxlength="6" autocomplete="off"></div>
+  </div>
+  <div class="actions"><button class="btn" onclick="startQuiz()">Start quiz</button><button class="btn secondary" onclick="createRoom()">Generate room code</button></div>
+  <div class="notice"><b>How the duel works:</b> One person generates a room code and shares it. The other person enters the same code. Both can use the public URL from different devices. Scores are stored in Supabase and filtered by the room code.</div>
+  <div class="notice"><b>Current question bank:</b> 20 OS Mock Test-1 + 8 OS Mock Test-2 currently available + 10 Similar to Accenture + 10 OS-CPU + 10 OS-Management = 58 loaded questions. The remaining 12 Mock Test-2 questions can be added later without changing the site structure.</div>
+</section>
+
+<section id="quiz" class="card quiz hidden">
+  <div class="quizhead"><span id="playerText"></span><span id="counter"></span></div>
+  <div class="progress"><div id="progressBar"></div></div>
+  <div class="qmeta"><span class="chip" id="setChip"></span><span class="chip" id="roomChip"></span></div>
+  <h2 class="qtext" id="question"></h2>
+  <div id="options"></div>
+  <div class="footer-actions"><button class="btn secondary" id="prevBtn" onclick="prevQuestion()">Previous</button><button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>Next</button></div>
+</section>
+
+<section id="results" class="card results hidden">
+  <div class="eyebrow">Room <span id="resultRoom"></span></div>
+  <h2 style="margin-top:14px">Quiz submitted</h2>
+  <p id="resultMessage"></p>
+  <div class="scoregrid"><div class="scorecard"><div class="small" id="myName"></div><div class="score" id="myScore">—</div><div class="pct" id="myPct"></div></div><div class="scorecard"><div class="small">Room leaderboard</div><div id="leaderboard" class="loading">Loading…</div></div></div>
+  <div class="actions"><button class="btn green" onclick="refreshLeaderboard()">Refresh scores</button><button class="btn secondary" onclick="location.reload()">New attempt</button></div>
+  <div id="review" class="review hidden"></div>
+</section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// Paste your Supabase Publishable key below. Do NOT paste a secret/service-role key.
+const SUPABASE_URL = "https://mxtqtsdhuozvfqtkhces.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE";
+const supabaseReady = SUPABASE_PUBLISHABLE_KEY !== "PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE";
+const db = supabaseReady ? window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY) : null;
+
+const QUESTIONS = [
+  {
+    "set": "OS Mock Test-1",
+    "q": "A user is running heavy video editing software and notices the computer has become very slow, and the fan is making a loud noise. The operating system is handling many tasks at the same time. Which main function of the OS decides which task will use the CPU next?",
+    "o": [
+      "File Management",
+      "Device Management",
+      "Process Scheduling",
+      "Security Management"
+    ],
+    "a": 2
+  },
+  {
+    "set": "OS Mock Test-1",
+    "q": "A system administrator receives a report that several critical system files have been accidentally deleted from the main server's hard drive. To prevent data loss and unauthorized changes to these files in the future, which security mechanism should the administrator focus on implementing or refining within the OS?",
+    "o": [
+      "Disk Fragmentation",
+      "Access Control Lists (ACLs)",
+      "Virtual Memory Paging",
+      "Bootloader Configuration"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS Mock Test-1",
+    "q": "A programmer has allocated a large block of memory for an array in their program. The OS needs to manage this memory space efficiently, ensuring no two programs write to the same location, but also allowing for more total memory use than physically available. Which OS concept is essential for this management?",
+    "o": [
+      "Input/Output (I/O) Buffering",
+      "Shell Scripting",
+      "Virtual Memory",
+      "Command Line Interface (CLI)"
+    ],
+    "a": 2
+  },
+  {
+    "set": "OS Mock Test-1",
+    "q": "A user's application crashes repeatedly because it runs out of memory, even though the system has more physical RAM. Investigation reveals the application keeps requesting memory but never releases the chunks it no longer needs. What specific problem is this application exhibiting that the OS memory manager is failing to fully counteract?",
+    "o": [
+      "Thrashing",
+      "Deadlock",
+      "Memory Leak",
+      "Race Condition"
+    ],
+    "a": 2
+  },
+  {
+    "set": "OS Mock Test-1",
+    "q": "A technician is installing an older printer on a new computer running a modern OS. After connecting the device, the OS cannot use the printer. What specific piece of software, which acts as a translator between the OS and the hardware, is most likely missing or incompatible?",
+    "o": [
+      "The BIOS",
+      "A Device Driver",
+      "The Bootloader",
+      "The Kernel's scheduler"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS Mock Test-1",
+    "q": "An IT support specialist is troubleshooting a system where multiple users are logged in remotely and sharing the computer's resources. One user's resource-intensive task is causing all other users to experience severe slowdowns. What type of operating system is this primarily designed as?",
+    "o": [
+      "Single-Tasking OS",
+      "Real-Time OS",
+      "Multi-User OS",
+      "Embedded OS"
+    ],
+    "a": 2
+  },
+  {
+    "set": "OS Mock Test-1",
+    "q": "A user attempts to execute a program, but the OS refuses to load it, stating that the program file type is unrecognized. The user verifies the file is present. Which part of the OS, responsible for determining the structure and organization of files on storage media, is the system consulting to identify the file type?",
+    "o": [
+      "The System Bus",
+      "The File System",
+      "The Command Shell",
+      "The Memory Heap"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS Mock Test-1",
+    "q": "A critical server process stops responding to system signals, and attempts to terminate it via standard commands fail. The system administrator needs to forcefully remove the process from memory and reclaim its resources. Which specific state is this process likely stuck in, requiring the OS to step in and forcefully terminate it?",
+    "o": [
+      "New",
+      "Ready",
+      "Blocked/Waiting",
+      "Zombie"
+    ],
+    "a": 3
+  },
+  {
+    "set": "OS Mock Test-1",
+    "q": "A CPU scheduler is using the First-Come, First-Serve (FCFS) algorithm. Three processes arrive at time 0: P1 with a burst time of 8 ms, P2 with 4 ms, and P3 with 6 ms. Since they arrived simultaneously, they are served in order P1, P2, then P3. What is the waiting time for process P3?",
+    "o": [
+      "4 ms",
+      "8 ms",
+      "12 ms",
+      "18 ms"
+    ],
+    "a": 2
+  },
+  {
+    "set": "OS Mock Test-1",
+    "q": "A system uses a paging scheme where the logical address space is 16 bits. Each page size is 1,024 bytes. A program attempts to access the logical address 2,500. What is the page number that corresponds to this address?",
+    "o": [
+      "1",
+      "2",
+      "25",
+      "14"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS Mock Test-1",
+    "q": "An Operating System is managing memory with 4 available memory frames. The following page reference string is generated by a process: 1, 2, 3, 4, 1, 2, 5, 1. If the First-In, First-Out (FIFO) page replacement algorithm is used, how many page faults will occur? (Assume the frames are initially empty.)",
+    "o": [
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS Mock Test-1",
+    "q": "Four processes P1, P2, P3, P4 have CPU burst times of 10, 5, 2, 3 respectively. All processes arrive at time 0. If the Shortest Job First (SJF) non-preemptive scheduling algorithm is used, what is the average waiting time for these processes?",
+    "o": [
+      "4 ms",
+      "5 ms",
+      "6 ms",
+      "7 ms"
+    ],
+    "a": 0
+  },
+  {
+    "set": "OS Mock Test-1",
+    "q": "A hard drive has 10,000 tracks (cylinders) numbered 0 to 9,999. The size of the main memory buffer for disk I/O is 4 KB. A user is reading a file sequentially, and the file size is 40 KB. If a single I/O operation reads 4 KB into the buffer, how many I/O operations (reads) are required to read the entire file?",
+    "o": [
+      "8",
+      "10",
+      "12",
+      "16"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS Mock Test-1",
+    "q": "A new Operating System kernel is being designed to handle highly secure transactions. The designers want to ensure that if one service fails, the entire system does not crash, and that the kernel remains small and isolated. Which kernel architecture would best fit this design goal by keeping service components in separate, protected memory spaces?",
+    "o": [
+      "Monolithic Kernel",
+      "Microkernel",
+      "Hybrid Kernel",
+      "Exokernel"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS Mock Test-1",
+    "q": "A printer is a slow I/O device. To increase system efficiency, the Operating System collects the output of multiple processes in a buffer on a disk and sends it to the printer when the printer is ready, allowing the CPU to continue running other tasks. What is this technique for buffering I/O known as?",
+    "o": [
+      "Pipelining",
+      "Spooling",
+      "Buffering",
+      "Thrashing"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS Mock Test-1",
+    "q": "A process needs to read data from a file but the OS finds the required data block is not currently in the memory buffer cache. The OS must issue a command to the disk controller to fetch the data block from the hard drive. What is the standard interface through which the process requests this OS service?",
+    "o": [
+      "Kernel Thread",
+      "Instruction Register",
+      "System Call",
+      "Memory Management Unit (MMU)"
+    ],
+    "a": 2
+  },
+  {
+    "set": "OS Mock Test-1",
+    "q": "A process consists of 4 pages and generates the following page reference string: 1, 2, 4, 3, 2, 1, 4, 2. The system uses 3 memory frames and the Optimal Page Replacement (OPT) algorithm. How many page faults will occur? (Assume the frames are initially empty.)",
+    "o": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "a": 2
+  },
+  {
+    "set": "OS Mock Test-1",
+    "q": "A company needs to run a database application on a server where the time between a user request and its execution must be minimal and strictly predictable, even if it means sacrificing overall system throughput. Which type of operating system is most suitable to guarantee that all requests are completed within strict deadlines?",
+    "o": [
+      "Time-Sharing Operating System",
+      "Batch Operating System",
+      "Soft Real-Time Operating System",
+      "Hard Real-Time Operating System"
+    ],
+    "a": 3
+  },
+  {
+    "set": "OS Mock Test-1",
+    "q": "An application developer is using a modern OS that allows them to create multiple threads within a single process to handle different tasks concurrently. These threads share the process's code, data, and files. Which resource, however, must remain unique to each individual thread?",
+    "o": [
+      "Global Variables",
+      "Program Counter (PC)",
+      "File Descriptors",
+      "Code Segment"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS Mock Test-1",
+    "q": "A system administrator is observing that the hard disk is constantly active, and the system is spending an excessive amount of time swapping pages between main memory (RAM) and secondary storage (disk), severely slowing down CPU utilization. What specific performance degradation state is the system experiencing?",
+    "o": [
+      "Deadlock",
+      "Segmentation Fault",
+      "Thrashing",
+      "Race Condition"
+    ],
+    "a": 2
+  },
+  {
+    "set": "OS Mock Test-2",
+    "q": "A process needs to read data from a file but the required data block is not currently in the memory buffer cache. The OS must issue a command to the disk controller to fetch the data block. What is the standard interface through which the process requests the OS service?",
+    "o": [
+      "Kernel Thread",
+      "Instruction Register",
+      "System Call",
+      "Memory Management Unit (MMU)"
+    ],
+    "a": 2
+  },
+  {
+    "set": "OS Mock Test-2",
+    "q": "A process consists of 4 pages and generates the page reference string 1, 2, 4, 3, 2, 1, 4, 2. The system uses 3 memory frames and the Optimal Page Replacement (OPT) algorithm. How many page faults will occur? (Assume the frames are initially empty.)",
+    "o": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "a": 2
+  },
+  {
+    "set": "OS Mock Test-2",
+    "q": "A company needs to run a database application where the time between a request and its execution must be minimal and strictly predictable, even if throughput is sacrificed. Which OS type is suitable to guarantee completion within strict deadlines?",
+    "o": [
+      "Time-Sharing Operating System",
+      "Batch Operating System",
+      "Soft Real-Time Operating System",
+      "Hard Real-Time Operating System"
+    ],
+    "a": 3
+  },
+  {
+    "set": "OS Mock Test-2",
+    "q": "Multiple threads within one process share code, data, and files. Which resource must remain unique to each thread?",
+    "o": [
+      "Global Variables",
+      "Program Counter (PC)",
+      "File Descriptors",
+      "Code Segment"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS Mock Test-2",
+    "q": "A hard disk is constantly active and the system spends excessive time swapping pages between RAM and disk, severely slowing CPU utilization. What performance degradation state is this?",
+    "o": [
+      "Deadlock",
+      "Segmentation Fault",
+      "Thrashing",
+      "Race Condition"
+    ],
+    "a": 2
+  },
+  {
+    "set": "OS Mock Test-2",
+    "q": "A user executes a program that requires reading a file. The program requests the OS to perform the file read operation. In which mode is the CPU operating when the OS kernel executes the instructions necessary to fulfill this request?",
+    "o": [
+      "User Mode",
+      "Debug Mode",
+      "Protected Mode",
+      "Kernel Mode"
+    ],
+    "a": 3
+  },
+  {
+    "set": "OS Mock Test-2",
+    "q": "A company has a legacy application that must run immediately upon system boot, bypassing the standard graphical desktop environment. Which component is typically configured to automatically execute this specific application before the user interface loads?",
+    "o": [
+      "The File System",
+      "The Shell (Command Interpreter)",
+      "The Virtual Memory Manager",
+      "The Bootloader"
+    ],
+    "a": 3
+  },
+  {
+    "set": "OS Mock Test-2",
+    "q": "An Operating System manages many user applications simultaneously by quickly switching the CPU between them, making users feel that multiple programs run at the same time. This core capability is known as:",
+    "o": [
+      "Concurrency",
+      "Parallelism",
+      "Virtualization",
+      "Serialization"
+    ],
+    "a": 2
+  },
+  {
+    "set": "Similar to Accenture",
+    "q": "A developer writes a C program that must create a new process and run /usr/bin/python in that process. Which pair of system calls is appropriate?",
+    "o": [
+      "fork() and exec()",
+      "clone() and wait()",
+      "open() and close()",
+      "pipe() and dup2()"
+    ],
+    "a": 0
+  },
+  {
+    "set": "Similar to Accenture",
+    "q": "Two processes share a critical resource. To prevent concurrent access, which mechanism is most suitable?",
+    "o": [
+      "Signal handling",
+      "Mutex lock",
+      "Process scheduling",
+      "Thread pooling"
+    ],
+    "a": 1
+  },
+  {
+    "set": "Similar to Accenture",
+    "q": "A program needs to send structured data between independent processes on the same machine. Which IPC mechanism fits best?",
+    "o": [
+      "Message queues",
+      "Signals",
+      "Semaphores",
+      "Threads"
+    ],
+    "a": 0
+  },
+  {
+    "set": "Similar to Accenture",
+    "q": "In a multi-threaded application, all threads share which of the following?",
+    "o": [
+      "Registers",
+      "Program counter",
+      "Heap memory",
+      "Stack"
+    ],
+    "a": 2
+  },
+  {
+    "set": "Similar to Accenture",
+    "q": "When a context switch occurs between two processes, which state is NOT preserved by the OS?",
+    "o": [
+      "CPU registers",
+      "Program counter",
+      "Open file descriptors",
+      "Kernel stack pointer"
+    ],
+    "a": 2
+  },
+  {
+    "set": "Similar to Accenture",
+    "q": "When a user process makes a system call, control is transferred to:",
+    "o": [
+      "User mode",
+      "Device driver",
+      "Kernel mode",
+      "Scheduler"
+    ],
+    "a": 2
+  },
+  {
+    "set": "Similar to Accenture",
+    "q": "If a parent process exits before its child process, what happens to the child in a UNIX-like system?",
+    "o": [
+      "It also terminates immediately",
+      "It becomes an orphan process adopted by init/systemd",
+      "It becomes a zombie process permanently",
+      "It loses access to system resources"
+    ],
+    "a": 1
+  },
+  {
+    "set": "Similar to Accenture",
+    "q": "A process attempts to access memory that it does not own. What happens?",
+    "o": [
+      "The memory is automatically allocated",
+      "The OS ignores it",
+      "A segmentation fault occurs",
+      "The data is copied to swap space"
+    ],
+    "a": 2
+  },
+  {
+    "set": "Similar to Accenture",
+    "q": "A program needs to redirect standard output to a file. Which system calls are used?",
+    "o": [
+      "open() and dup2()",
+      "pipe() and close()",
+      "read() and write()",
+      "fork() and wait()"
+    ],
+    "a": 0
+  },
+  {
+    "set": "Similar to Accenture",
+    "q": "A real-time system must ensure that critical processes get CPU immediately after becoming ready. Which scheduling policy is most suitable?",
+    "o": [
+      "Round Robin",
+      "FCFS",
+      "Preemptive Priority Scheduling",
+      "Multilevel Queue"
+    ],
+    "a": 2
+  },
+  {
+    "set": "OS-CPU",
+    "q": "During a context switch, the OS saves the state of the running process and loads another. Which CPU register must be saved and restored to continue execution correctly?",
+    "o": [
+      "Accumulator",
+      "Program Counter (PC)",
+      "Stack Pointer",
+      "Status Register"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS-CPU",
+    "q": "When a process is interrupted, the CPU saves the process’s stack state to resume later. Which register points to the top of the current process’s stack?",
+    "o": [
+      "Stack Pointer (SP)",
+      "Instruction Register",
+      "Program Counter",
+      "Base Register"
+    ],
+    "a": 0
+  },
+  {
+    "set": "OS-CPU",
+    "q": "A CPU saves flags like zero, carry, and overflow before switching processes. Which register contains these status bits?",
+    "o": [
+      "Accumulator",
+      "Status Register / Flag Register",
+      "Instruction Register",
+      "Stack Pointer"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS-CPU",
+    "q": "During instruction execution, the CPU holds the current instruction in which register?",
+    "o": [
+      "Program Counter",
+      "Instruction Register (IR)",
+      "Stack Pointer",
+      "Base Register"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS-CPU",
+    "q": "A memory management unit needs to ensure a process accesses only its allocated memory. Which registers define the allowed memory range?",
+    "o": [
+      "Program Counter and Stack Pointer",
+      "Base Register and Limit Register",
+      "Accumulator and IR",
+      "Status Register and SP"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS-CPU",
+    "q": "During preemptive multitasking, which set of registers is critical to preserve for a context switch?",
+    "o": [
+      "Only PC is saved",
+      "Save PC, SP, and status register",
+      "Save only Stack Pointer",
+      "Save instruction cache only"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS-CPU",
+    "q": "In a multithreaded OS, each thread has its own PC. Why is this necessary?",
+    "o": [
+      "To store variable values",
+      "To know the next instruction of each thread",
+      "To manage the stack",
+      "To handle interrupts"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS-CPU",
+    "q": "When a hardware interrupt occurs, which registers must be preserved to resume the interrupted process?",
+    "o": [
+      "Accumulator only",
+      "Program Counter, Stack Pointer, and Status Register",
+      "Base and Limit Registers only",
+      "Instruction Register only"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS-CPU",
+    "q": "If a process communicates with I/O devices via memory-mapped registers, which OS task is essential during context switch?",
+    "o": [
+      "Saving general-purpose and I/O-related registers",
+      "Ignoring registers",
+      "Resetting all registers to zero",
+      "Only saving stack pointer"
+    ],
+    "a": 0
+  },
+  {
+    "set": "OS-CPU",
+    "q": "Where does the OS typically store the saved state (PC, SP, and status) of a process or thread during a context switch?",
+    "o": [
+      "Process stack",
+      "Thread Control Block (TCB)",
+      "Instruction cache",
+      "CPU cache only"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS-Management",
+    "q": "A system administrator is configuring multiple printers, external drives, and scanners to be used by different users simultaneously. Which operating system function ensures proper coordination of these devices?",
+    "o": [
+      "Process Scheduling",
+      "Device Management",
+      "File Management",
+      "Memory Management"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS-Management",
+    "q": "You are developing a multitasking application that runs background processes while the user performs other activities. Which operating system property makes this possible?",
+    "o": [
+      "Multithreading",
+      "Time Sharing",
+      "Distributed Processing",
+      "Batch Processing"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS-Management",
+    "q": "An IT engineer notices that a few background services are consuming too much CPU, affecting system performance. Which OS component manages this issue?",
+    "o": [
+      "Kernel",
+      "Shell",
+      "File System",
+      "Device Driver"
+    ],
+    "a": 0
+  },
+  {
+    "set": "OS-Management",
+    "q": "While using a word processor, the application crashes but other programs continue to run normally. Which OS feature prevents total system failure in this situation?",
+    "o": [
+      "Protection",
+      "Fault Isolation",
+      "Virtualization",
+      "Paging"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS-Management",
+    "q": "A company's HR application requires quick access to employee data stored in files. Which OS function is primarily responsible for organizing and retrieving this data efficiently?",
+    "o": [
+      "Memory Management",
+      "File Management",
+      "Device Management",
+      "Security"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS-Management",
+    "q": "During execution, an application requests additional RAM to process large datasets. Which OS function handles this requirement?",
+    "o": [
+      "Interrupt Handling",
+      "Memory Management",
+      "Device Control",
+      "Security"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS-Management",
+    "q": "A developer is designing software that will execute tasks in a specific sequence — first login verification, then data fetching, and finally report generation. Which OS concept ensures proper sequence execution?",
+    "o": [
+      "Process Control Block",
+      "Job Scheduling",
+      "Process Synchronization",
+      "Process State Transition"
+    ],
+    "a": 2
+  },
+  {
+    "set": "OS-Management",
+    "q": "While developing an embedded system for a medical device, a developer ensures that critical processes like heartbeat monitoring are not delayed. Which OS feature supports this?",
+    "o": [
+      "Time Sharing",
+      "Real-Time Processing",
+      "Batch Scheduling",
+      "Virtual Memory"
+    ],
+    "a": 1
+  },
+  {
+    "set": "OS-Management",
+    "q": "A system designer is implementing a login authentication mechanism that prevents unauthorized access. Which OS service provides this functionality?",
+    "o": [
+      "Command Interpretation",
+      "File Management",
+      "Security",
+      "Resource Allocation"
+    ],
+    "a": 2
+  },
+  {
+    "set": "OS-Management",
+    "q": "An operating system is running multiple user sessions simultaneously on a remote server. Which feature allows it to maintain separation between each user's data and processes?",
+    "o": [
+      "Multiuser System",
+      "Multithreading",
+      "Distributed System",
+      "Batch Processing"
+    ],
+    "a": 0
+  }
+];
+let state={name:"",room:"",idx:0,answers:[],questions:QUESTIONS};
+
+const $=id=>document.getElementById(id);
+function toast(msg){const t=document.createElement('div');t.className='toast';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2300)}
+function createRoom(){const code=Math.random().toString(36).slice(2,8).toUpperCase();$('room').value=code;toast('Room code generated. Share it with your partner.');}
+function startQuiz(){
+  state.name=$('name').value.trim(); state.room=$('room').value.trim().toUpperCase();
+  if(!state.name){toast('Enter your name first.');return} if(!/^[A-Z0-9]{6}$/.test(state.room)){toast('Use a 6-character room code.');return}
+  state.idx=0;state.answers=[];state.questions=QUESTIONS.slice();
+  $('home').classList.add('hidden');$('results').classList.add('hidden');$('quiz').classList.remove('hidden');render();window.scrollTo({top:0,behavior:'smooth'});
+}
+function render(){
+ const q=state.questions[state.idx]; $('playerText').textContent=state.name+"'s attempt"; $('counter').textContent=`Question ${state.idx+1} of ${state.questions.length}`; $('progressBar').style.width=((state.idx+1)/state.questions.length*100)+'%'; $('setChip').textContent=q.set; $('roomChip').textContent='Room '+state.room; $('question').textContent=q.q; $('prevBtn').disabled=state.idx===0; $('nextBtn').disabled=state.answers[state.idx]===undefined; $('nextBtn').textContent=state.idx===state.questions.length-1?'Submit quiz':'Next';
+ $('options').innerHTML=q.o.map((o,i)=>`<button class="option ${state.answers[state.idx]===i?'selected':''}" onclick="choose(${i})"><span class="letter">${String.fromCharCode(65+i)}</span><span>${escapeHtml(o)}</span></button>`).join('');
+}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function choose(i){state.answers[state.idx]=i;render();}
+function prevQuestion(){if(state.idx>0){state.idx--;render();window.scrollTo({top:0,behavior:'smooth'})}}
+function nextQuestion(){if(state.answers[state.idx]===undefined)return;if(state.idx<state.questions.length-1){state.idx++;render();window.scrollTo({top:0,behavior:'smooth'})}else submitQuiz()}
+async function submitQuiz(){
+  const score=state.questions.reduce((sum,q,i)=>sum+(state.answers[i]===q.a?1:0),0);
+  const payload={player_name:state.name,score,total_questions:state.questions.length,duel_code:state.room};
+  if(!supabaseReady){showResults(score);toast('Supabase key is not configured yet.');return}
+  const {error}=await db.from('quiz_results').insert(payload);
+  if(error){console.error(error);toast('Could not save score: '+error.message);showResults(score);return}
+  showResults(score);
+}
+async function showResults(score){
+ $('quiz').classList.add('hidden');$('results').classList.remove('hidden');$('resultRoom').textContent=state.room;$('resultMessage').textContent='Your score is saved for this room. Your partner can use the same room code from another device.';$('myName').textContent=state.name;$('myScore').textContent=score+' / '+state.questions.length;$('myPct').textContent=Math.round(score/state.questions.length*100)+'% correct';
+ const review=[];state.questions.forEach((q,i)=>{const ok=state.answers[i]===q.a;review.push(`<div class="review-item"><b>${i+1}. ${escapeHtml(q.q)}</b><div class="${ok?'correct':'wrong'}">${ok?'✓ Correct':'✗ Incorrect'} — your answer: ${state.answers[i]===undefined?'Not answered':escapeHtml(q.o[state.answers[i]])}</div><div class="small">Correct answer: ${String.fromCharCode(65+q.a)}) ${escapeHtml(q.o[q.a])}</div></div>`)});$('review').innerHTML='<h3>Answer review</h3>'+review.join('');$('review').classList.remove('hidden');await refreshLeaderboard();window.scrollTo({top:0,behavior:'smooth'});
+}
+async function refreshLeaderboard(){
+ if(!supabaseReady){$('leaderboard').innerHTML='<div class="small">Configure the Supabase publishable key in the HTML first.</div>';return}
+ const {data,error}=await db.from('quiz_results').select('player_name,score,total_questions,submitted_at').eq('duel_code',state.room).order('score',{ascending:false}).order('submitted_at',{ascending:true});
+ if(error){$('leaderboard').innerHTML='<div class="small">Leaderboard error: '+escapeHtml(error.message)+'</div>';return}
+ if(!data?.length){$('leaderboard').innerHTML='<div class="small">No scores yet.</div>';return}
+ $('leaderboard').innerHTML=data.map((r,i)=>`<div class="leader-row"><span><span class="rank">${i+1}. ${escapeHtml(r.player_name)}</span><br><span class="small">${new Date(r.submitted_at).toLocaleString()}</span></span><strong>${r.score}/${r.total_questions}</strong></div>`).join('');
+}
+const savedTheme=localStorage.getItem('osDuelTheme')||'light';document.documentElement.dataset.theme=savedTheme;$('themeBtn').textContent=savedTheme==='dark'?'☀':'☾';$('themeBtn').onclick=()=>{const next=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=next;localStorage.setItem('osDuelTheme',next);$('themeBtn').textContent=next==='dark'?'☀':'☾'};
+</script>
+</body>
+</html>
